@@ -1,29 +1,28 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "next-themes";
+import type { Metadata } from "next"
+import { Inter, Syne } from "next/font/google"
+import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500"],
+})
+
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["700"],
+})
 
 export const metadata: Metadata = {
-  title: "Jonathan Shyaka | Software Engineer",
-  description: "Full stack engineer specializing in React, Node.js, and cloud technologies. Experienced in building scalable web and mobile applications.",
-};
+  title: "Jonathan Shyaka",
+  description: "Founder building in Kigali.",
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
-            {children}
-          </div>
-        </ThemeProvider>
-      </body>
+    <html lang="en">
+      <body className={`${inter.variable} ${syne.variable}`}>{children}</body>
     </html>
-  );
+  )
 }
